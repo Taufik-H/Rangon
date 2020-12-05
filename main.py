@@ -39,8 +39,8 @@ class RANGON:
 
 # DISPLAY
 pygame.init()
-ukuran_cell = 30
-no_cell = 20
+ukuran_cell = 26
+no_cell = 26
 screen = pygame.display.set_mode((no_cell * ukuran_cell, no_cell * ukuran_cell))
 pygame.display.set_caption('RANGON')
 clock = pygame.time.Clock()
@@ -58,6 +58,15 @@ while True:
             sys.exit()
         if event.type == SCREEN_UPDATE:
             rangon.move_rangon()
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_w or event.key == pygame.K_UP:
+                 rangon.direction = Vector2(0,-1)
+            if event.key == pygame.K_a or event.key == pygame.K_LEFT:
+                 rangon.direction = Vector2(-1,0)
+            if event.key == pygame.K_s or event.key == pygame.K_DOWN:
+                 rangon.direction = Vector2(0, 1)
+            if event.key == pygame.K_d or event.key == pygame.K_RIGHT:
+                 rangon.direction = Vector2(1, 0)
 
     screen.fill((103, 214, 146))
     makanan.gambar_makanan()
