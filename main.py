@@ -27,6 +27,28 @@ class RANGON:
         self.direction = Vector2(1,0)
         self.tambah_ngaceng = False
 
+        # kepala
+        self.head_up = pygame.image.load('assets/head_up.png').convert_alpha()
+        self.head_down = pygame.image.load('assets/head_down.png').convert_alpha()
+        self.head_left = pygame.image.load('assets/head_left.png').convert_alpha()
+        self.head_right = pygame.image.load('assets/head_right.png').convert_alpha()
+
+        # ekor
+        self.tail_up = pygame.image.load('assets/tail_up.png').convert_alpha()
+        self.tail_down = pygame.image.load('asset/tail_down.png').convert_alpha()
+        self.tail_left = pygame.image.load('assets/tail_left.png').convert_alpha()
+        self.tail_right = pygame.image.load('assets/tail_right.png').convert_alpha()
+
+        # body
+
+        self.body_vertical = pygame.image.load('assets/body_vertical.png').convert_alpha()
+        self.body_horizontal = pygame.image.load('assets/body_horizontal').convert_alpha()
+
+        self.body_up = pygame.image.load('assets/move_up.png').convert_alpha()
+        self.body_down = pygame.image.load('assets/move_down.png').convert_alpha()
+        self.body_left = pygame.image.load('assets/move_left.png').convert_alpha()
+        self.body_right = pygame.image.load('assets/move_right.png').convert_alpha()
+
     def gambar_rangon(self):
         for block in self.body:
             x_pos = int(block.x * ukuran_cell)
