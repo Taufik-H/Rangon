@@ -35,14 +35,14 @@ class RANGON:
 
         # ekor
         self.tail_up = pygame.image.load('assets/tail_up.png').convert_alpha()
-        self.tail_down = pygame.image.load('asset/tail_down.png').convert_alpha()
+        self.tail_down = pygame.image.load('assets/tail_down.png').convert_alpha()
         self.tail_left = pygame.image.load('assets/tail_left.png').convert_alpha()
         self.tail_right = pygame.image.load('assets/tail_right.png').convert_alpha()
 
         # body
 
         self.body_vertical = pygame.image.load('assets/body_vertical.png').convert_alpha()
-        self.body_horizontal = pygame.image.load('assets/body_horizontal').convert_alpha()
+        self.body_horizontal = pygame.image.load('assets/body_horizontal.png').convert_alpha()
 
         self.body_up = pygame.image.load('assets/move_up.png').convert_alpha()
         self.body_down = pygame.image.load('assets/move_down.png').convert_alpha()
@@ -50,12 +50,23 @@ class RANGON:
         self.body_right = pygame.image.load('assets/move_right.png').convert_alpha()
 
     def gambar_rangon(self):
-        for block in self.body:
+        self.update_head_graphics()
+
+        for index,block in enumerate(self.body):
             x_pos = int(block.x * ukuran_cell)
             y_pos = int(block.y * ukuran_cell)
             block_rect = pygame.Rect(x_pos, y_pos, ukuran_cell, no_cell)
-            pygame.draw.rect(screen, (72, 150, 189), block_rect)
-               
+
+            if index == 0:
+                screen.blit(self.head,block_rect)
+            else:
+                pygame.draw.rect(screen, (72, 150, 189), block_rect)
+    def update_head_graphics(self):
+        head_relation = self.body[1] - self.body[0]
+        if head_relation == Vector2(1, 0): self.head = self.head_left
+        elif head_relation == Vector2(-1, 0): self.head = self.head_right
+        elif head_relation == Vector2(0, 1): self.head = self.head_up
+        elif head_relation == Vector2(0, -1): self.head = self.head_down
     # menggerakan rangon
     def move_rangon(self):
 
