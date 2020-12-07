@@ -1,5 +1,5 @@
-<h1 center> 🐍 Rangon</h1>
- adalah game snake sederhana dengan pygame python
+<h1 align="center"> 🐍 Rangon</h1>
+ <p align="center">adalah game snake sederhana dengan pygame python</p>
  
 # ⚙ installasi [cloning repo](https://github.com/Taufik-H/Rangon) & [pygame](https://www.pygame.org/wiki/GettingStarted) 
 
