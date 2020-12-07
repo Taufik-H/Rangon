@@ -2,11 +2,6 @@ import pygame,sys,random
 from pygame.math import Vector2
 
 
-# membuat class ular Rangon 
-# class RANGON:
-#     def __init__(self):
-#         self.body = []
-# membuat class makanan & rectangle makanan
 
 class MAKANAN:
     def __init__(self):
@@ -150,7 +145,9 @@ pygame.init()
 ukuran_cell = 35
 no_cell = 20
 screen = pygame.display.set_mode((700, 700))
-pygame.display.set_caption('RANGON')
+logo = pygame.image.load('assets/logo.png')
+pygame.display.set_icon(logo)
+pygame.display.set_caption('𝕽𝖆𝖓𝖌𝖔𝖓')
 clock = pygame.time.Clock()
 food = pygame.image.load('assets/food.png').convert_alpha()
 
