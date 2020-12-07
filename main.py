@@ -119,8 +119,10 @@ class MAIN:
         self.nyepong()
         self.check_fail()
     def draw_element(self):
+        self.papan_catur()
         self.makanan.gambar_makanan()
         self.rangon.gambar_rangon()
+        self.draw_score()
     def check_fail(self):
         # jika rangon menabrak screen maka quit window
         if not 0 <= self.rangon.body[0].x < no_cell or not 0 <= self.rangon.body[0].y < no_cell:
@@ -132,6 +134,20 @@ class MAIN:
     def game_over(self):
         pygame.quit()
         sys.exit()
+
+    def papan_catur(self):
+        warna_papan = (142, 204, 57)
+        for row in range (no_cell):
+            if row % 2 ==0:
+                for col in range(no_cell):
+                    if col % 2 == 0:
+                        papan_rect = pygame.Rect(col * ukuran_cell, row * ukuran_cell,ukuran_cell,ukuran_cell)
+                        pygame.draw.rect(screen,warna_papan,papan_rect)
+            else:
+                for col in range(no_cell):
+                    if col % 2 != 0:
+                        papan_rect = pygame.Rect(col * ukuran_cell, row * ukuran_cell,ukuran_cell,ukuran_cell)
+                        pygame.draw.rect(screen,warna_papan,papan_rect)
         # kalo rangon nyepong makanan 
         # maka makanan akan berpindah & 
         # tambahkakn blok pada rangon(tambah ngatjeng)
@@ -139,7 +155,14 @@ class MAIN:
         if  self.makanan.pos == self.rangon.body[0]:
             self.makanan.pindah_makanan()
             self.rangon.ngaceng()
-
+    def draw_score(self):
+        score_text = str(len(self.rangon.body) -3 )
+        score_surface = game_font.render(score_text, True, (57,74, 12))
+        score_x = int(ukuran_cell * no_cell - 684)
+        score_y = int(ukuran_cell * no_cell - 680)
+        score_rect = score_surface.get_rect( center = (score_x, score_y))
+        score_icon = pygame.image.load('assets/food.png')
+        screen.blit(score_surface,score_rect)
 # DISPLAY
 pygame.init()
 ukuran_cell = 35
@@ -150,6 +173,7 @@ pygame.display.set_icon(logo)
 pygame.display.set_caption('𝕽𝖆𝖓𝖌𝖔𝖓')
 clock = pygame.time.Clock()
 food = pygame.image.load('assets/food.png').convert_alpha()
+game_font = pygame.font.Font(None, 30)
 
 SCREEN_UPDATE = pygame.USEREVENT
 pygame.time.set_timer(SCREEN_UPDATE, 150)
@@ -177,7 +201,7 @@ while True:
                 if main_game.rangon.direction.x !=-1:
                     main_game.rangon.direction = Vector2(1, 0)
 
-    screen.fill((103, 214, 146))
+    screen.fill((167, 217, 72))
     main_game.draw_element()
     pygame.display.update()
 
