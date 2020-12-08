@@ -1,6 +1,6 @@
 <h1 align="center"> 🐍 Rangon</h1>
  <p align="center">adalah game snake sederhana dengan pygame python</p>
- 
+![alt RankOn](https://github.com/Taufik-H/Rangon/blob/main/RankOn.png) 
 ## ⚙ installasi [cloning repo](https://github.com/Taufik-H/Rangon) & [pygame](https://www.pygame.org/wiki/GettingStarted) 
 
 ```bash
