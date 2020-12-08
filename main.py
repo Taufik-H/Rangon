@@ -19,7 +19,7 @@ class MAKANAN:
 class RANGON:
     def __init__(self):
         self.body = [Vector2(5, 10), Vector2(4, 10),  Vector2(3, 10)]
-        self.direction = Vector2(1,0)
+        self.direction = Vector2(0,0)
         self.tambah_ngaceng = False
 
         # kepala
@@ -43,6 +43,7 @@ class RANGON:
         self.body_tl = pygame.image.load('assets/body_tl.png').convert_alpha()
         self.body_br = pygame.image.load('assets/body_br.png').convert_alpha()
         self.body_bl = pygame.image.load('assets/body_bl.png').convert_alpha()
+        self.crunch_sound = pygame.mixer.Sound('Sound/crunch.wav')
 
     def gambar_rangon(self):
         self.update_head_graphics()
@@ -108,6 +109,12 @@ class RANGON:
             self.body = body_copy[:]
     def ngaceng(self):
         self.tambah_ngaceng = True
+    def play_crunch_sound(self):
+        self.crunch_sound.play()
+    def reset(self):
+        self.body = [Vector2(5, 10), Vector2(4, 10),  Vector2(3, 10)]
+        self.direction = Vector2(0, 0)
+
 
 # class main
 class MAIN:
@@ -124,17 +131,15 @@ class MAIN:
         self.rangon.gambar_rangon()
         self.draw_score()
     def check_fail(self):
-        # jika rangon menabrak screen maka quit window
+    
         if not 0 <= self.rangon.body[0].x < no_cell or not 0 <= self.rangon.body[0].y < no_cell:
             self.game_over()
-        # jika menabrak body dari rangon maka quit
+      
         for block in self.rangon.body[1:]:
             if block == self.rangon.body[0]:
                 self.game_over()
     def game_over(self):
-        pygame.quit()
-        sys.exit()
-
+        self.rangon.reset()
     def papan_catur(self):
         warna_papan = (142, 204, 57)
         for row in range (no_cell):
@@ -155,15 +160,29 @@ class MAIN:
         if  self.makanan.pos == self.rangon.body[0]:
             self.makanan.pindah_makanan()
             self.rangon.ngaceng()
+            self.rangon.play_crunch_sound()
+
+        for block in self.rangon.body[1:]:
+            if block == self.makanan.pos:
+                self.makanan.pindah_makanan()
     def draw_score(self):
         score_text = str(len(self.rangon.body) -3 )
         score_surface = game_font.render(score_text, True, (57,74, 12))
-        score_x = int(ukuran_cell * no_cell - 684)
+        score_x = int(ukuran_cell * no_cell - 660)
         score_y = int(ukuran_cell * no_cell - 680)
         score_rect = score_surface.get_rect( center = (score_x, score_y))
-        score_icon = pygame.image.load('assets/food.png')
+        score_icon = food.get_rect(midright = (score_rect.left, score_rect.centery))
+
+        bg_rect = pygame.Rect(score_icon.left -5, score_icon.top, score_icon.width + score_rect.width + 10, score_icon.height)
+
+        pygame.draw.rect(screen, (167, 209, 61), bg_rect)
+
         screen.blit(score_surface,score_rect)
+        screen.blit(food, score_icon)
+        pygame.draw.rect(screen,(56,74,12),bg_rect,2)
 # DISPLAY
+#atasi delay dari sound = mixer.pre_init
+pygame.mixer.pre_init(44100, -16, 2, 512)
 pygame.init()
 ukuran_cell = 35
 no_cell = 20
