@@ -10,7 +10,7 @@
  $ pip install pygame
  $ python main.py
  ```
-## 🕴 Tukang nmodonf :
+## 🕴 Me :
   [Taufik Hidayatulloh](https://github.com/Taufik-H)
   
 #
