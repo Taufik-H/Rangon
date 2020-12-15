@@ -6,7 +6,7 @@
 ## ⚙ installasi [cloning repo](https://github.com/Taufik-H/Rangon) & [pygame](https://www.pygame.org/wiki/GettingStarted) 
 
 ```bash
- $ git clone ......
+ $ git clone https://github.com/Taufik-H/Rangon.git
  $ pip install pygame
  $ python main.py
  ```
