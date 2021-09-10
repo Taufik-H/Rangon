@@ -189,7 +189,7 @@ no_cell = 20
 screen = pygame.display.set_mode((700, 700))
 logo = pygame.image.load('assets/logo.png')
 pygame.display.set_icon(logo)
-pygame.display.set_caption('𝕽𝖆𝖓𝖌𝖔𝖓')
+pygame.display.set_caption('Rangon kamu hebat Taufik ❤️❤️❤️')
 clock = pygame.time.Clock()
 food = pygame.image.load('assets/food.png').convert_alpha()
 game_font = pygame.font.Font(None, 30)
