@@ -10,6 +10,8 @@
  $ pip install pygame
  $ python main.py
  ```
+### Error Sound (belum di fix)
+belum di fix karena sekarang belum install python di os baru
 ## 🕴 Me :
   [Taufik Hidayatulloh](https://github.com/Taufik-H)
   
